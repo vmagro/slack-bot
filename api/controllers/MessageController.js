@@ -27,7 +27,7 @@ module.exports = {
 
      for(var key in bots) {
        var bot = bots[key];
-       var ret = bot(req.body);
+       var ret = bot(req.body.text, req.body);
        if(ret) {
          return res.json(ret);
        }
