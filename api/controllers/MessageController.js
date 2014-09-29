@@ -16,23 +16,22 @@
  */
 
 module.exports = {
-    
-  
+
+
   /**
    * Action blueprints:
    *    `/message/onMessage`
    */
    onMessage: function (req, res) {
-     var message = req.body.text;
-     if(message.indexOf('-ass') != -1) {
-       var assIndex = message.indexOf('-ass');
-       var newMessage = message.substring(0, assIndex) + ' ass-' + message.substring(assIndex + 5);
-       return res.json({
-         text: newMessage
-       });
+     var bots = require('../../bots');
+
+     for(var key in bots) {
+       var bot = bots[key];
+       var ret = bot(req.body);
+       if(ret) {
+         return res.json(ret);
+       }
      }
-     return res.json({
-     });
   },
 
 
@@ -44,5 +43,5 @@ module.exports = {
    */
   _config: {}
 
-  
+
 };
