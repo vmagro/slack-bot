@@ -25,7 +25,10 @@ module.exports = {
    onMessage: function (req, res) {
      var bots = require('../../bots');
 
+     console.log(bots);
+
      for(var key in bots) {
+       console.log('running bot: ' + key);
        var bot = bots[key];
        var ret = bot(req.body.text, req.body);
        if(ret) {

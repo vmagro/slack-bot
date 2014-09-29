@@ -6,5 +6,4 @@ module.exports = function(message, slackMetadata) {
       text: newMessage
     };
   }
-  return {};
 };
