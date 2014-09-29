@@ -35,6 +35,10 @@ module.exports = {
          return res.json(ret);
        }
      }
+
+     setTimeout(function(){
+       res.end();
+     }, 2000);
   },
 
 
