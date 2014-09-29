@@ -6,9 +6,11 @@ module.exports = function(message, slackMetadata, callback) {
     if(toDogeify.indexOf('dogeify') == 0)
       toDogeify = toDogeify.substring(8);
     exec('ruby -e "require \'dogeify\'\n dogeifier = Dogeify.new\n puts dogeifier.process(\''+toDogeify+'\')"', function(err, stdout, stderr) {
-      callback({
-        text: stdout.trim()
-      });
+      if(stdout.length > 0){
+        callback({
+          text: stdout.trim()
+        });
+      }
     });
 
   }
