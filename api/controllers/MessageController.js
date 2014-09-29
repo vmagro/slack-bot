@@ -29,7 +29,6 @@ module.exports = {
        console.log('running bot: ' + key);
        var bot = bots[key];
        var ret = bot(req.body.text, req.body);
-       console.log(req.body);
        if(ret) {
          return res.json(ret);
        }
