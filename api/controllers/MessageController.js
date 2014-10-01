@@ -25,6 +25,11 @@ module.exports = {
    onMessage: function (req, res) {
      var bots = require('../../bots');
 
+     if(req.body.user_name.indexOf('bot') != -1) {
+       res.end(200);
+       return;
+     }
+
      for(var key in bots) {
        console.log('running bot: ' + key);
        var bot = bots[key];
