@@ -43,13 +43,14 @@ module.exports = {
              channel: req.body.channel,
              text: result.text
            });
-           return res.end(200);
+           return res.send(200);
          }
          return res.json(result);
        });
      }
 
      setTimeout(function(){
+       res.send(200);
        res.end();
      }, 2000);
   },
