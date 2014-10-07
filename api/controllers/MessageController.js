@@ -15,6 +15,8 @@
  * @docs        :: http://sailsjs.org/#!documentation/controllers
  */
 
+ var request = require('request');
+
 module.exports = {
 
 
@@ -34,11 +36,21 @@ module.exports = {
        console.log('running bot: ' + key);
        var bot = bots[key];
        bot(req.body.text.toLowerCase(), req.body, function callback(result){
+         if(result.rewrite) {
+           request.post('https://slack.com/api/chat.update', {
+             token: req.body.token,
+             ts: req.body.timestamp,
+             channel: req.body.channel,
+             text: result.text
+           });
+           return res.send(200);
+         }
          return res.json(result);
        });
      }
 
      setTimeout(function(){
+       res.send(200);
        res.end();
      }, 2000);
   },
