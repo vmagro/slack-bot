@@ -40,7 +40,8 @@ module.exports = {
                     return res.json(result);
                 });
             } catch (e) {
-                console.log('bot ' + key + ' failed');
+                console.error('bot ' + key + ' failed');
+                console.error(e);
             }
         }
 
