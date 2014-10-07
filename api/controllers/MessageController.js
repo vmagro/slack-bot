@@ -28,7 +28,7 @@ module.exports = {
         var bots = require('../../bots');
 
         if (req.body.user_name.indexOf('bot') != -1) {
-            res.end(200);
+            res.send(200);
             return;
         }
 
