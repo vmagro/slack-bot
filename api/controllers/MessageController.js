@@ -32,11 +32,17 @@ module.exports = {
             return;
         }
 
+        var failsafeTimeout = setTimeout(function () {
+            res.send(200);
+            res.end();
+        }, 500);
+
         for (var key in bots) {
             console.log('running bot: ' + key);
             var bot = bots[key];
             try {
                 bot(req.body.text.toLowerCase(), req.body, function callback(result) {
+                    clearTimeout(failsafeTimeout);
                     return res.json(result);
                 });
             } catch (e) {
@@ -44,11 +50,6 @@ module.exports = {
                 console.error(e);
             }
         }
-
-        setTimeout(function () {
-            res.send(200);
-            res.end();
-        }, 500);
     },
 
 
