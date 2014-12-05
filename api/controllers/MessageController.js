@@ -32,24 +32,19 @@ module.exports = {
             return;
         }
 
-        var failsafeTimeout = setTimeout(function () {
-            res.send(200);
-            res.end();
-        }, 500);
-
-        for (var key in bots) {
-            console.log('running bot: ' + key);
-            var bot = bots[key];
+        async.eachSeries(bots, function(bot, callback) {
             try {
-                bot(req.body.text.toLowerCase(), req.body, function callback(result) {
-                    clearTimeout(failsafeTimeout);
-                    return res.json(result);
+                bot(req.body.text.toLowerCase(), req.body, function (result) {
+                    callback(result);
                 });
             } catch (e) {
                 console.error('bot ' + key + ' failed');
                 console.error(e);
+                callback();
             }
-        }
+        }, function(message) { // I am abusing the fact that async will return an "error" here at the first execution where a bot returns a value. We are using the parameter normally for errors as the message to be returned.
+          return res.json(message);
+        });
     },
 
 
