@@ -5,4 +5,5 @@ module.exports = function(message, slackMetadata, callback) {
       text: 'http://goo.gl/fiyPmH?'+slackMetadata.timestamp
     });
   }
+  callback();
 };

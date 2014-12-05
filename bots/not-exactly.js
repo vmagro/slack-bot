@@ -6,4 +6,5 @@ module.exports = function(message, slackMetadata, callback) {
       text: 'http://www.adweek.com/files/imagecache/node-detail/news_article/gary-shapiro-ces-hed-2012.jpg?'+slackMetadata.timestamp
     });
   }
+  callback();
 };

@@ -5,4 +5,5 @@ module.exports = function(message, slackMetadata, callback) {
       text: 'http://www.extremetech.com/wp-content/uploads/2013/01/hipster-diva.jpg?'+slackMetadata.timestamp
     });
   }
+  callback();
 };
