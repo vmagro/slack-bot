@@ -55,6 +55,10 @@ module.exports = {
         return res.redirect('https://scontent-a-lax.xx.fbcdn.net/hphotos-xfa1/v/t1.0-9/10157152_10202200513747625_7381961324784988088_n.jpg?oh=27e17019b9de2c9c6a878a6b5407701e&oe=54FB559C');
     },
 
+    darthjames: function(req, res) {
+        return res.redirect('https://scontent-a.xx.fbcdn.net/hphotos-xfa1/v/t1.0-9/10917368_10204853862860584_6527526621139048024_n.jpg?oh=eb78679e3ce0b11d393794d8df98a356&oe=556D45E8');
+    },
+
 
     /**
      * Overrides for the settings in `config/controllers.js`
