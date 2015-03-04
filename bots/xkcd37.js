@@ -5,7 +5,7 @@ module.exports = function (message, slackMetadata, callback) {
         endIndex = message.indexOf(' ', assIndex);
         if (endIndex == -1)
             endIndex = message.length;
-        var newMessage = 'What\'s an ass-' + str.substring(index, endIndex) + '?';
+        var newMessage = 'What\'s an ass-' + message.substring(assIndex, endIndex) + '?';
         callback({
             text: newMessage
         });
