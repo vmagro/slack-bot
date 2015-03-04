@@ -41,7 +41,7 @@ module.exports = {
                     callback(result); //see comment below about this method of detecting a bot finishing
                 });
             } catch (e) {
-                console.error('bot ' + key + ' failed');
+                console.error('bot failed');
                 console.error(e);
                 callback();
             }
