@@ -3,7 +3,7 @@ module.exports = function (message, slackMetadata, callback) {
         //append the slack timestamp so it shows the preview every time
         callback({
             rewrite: true,
-            text: 'http://i.ytimg.com/vi/FWkJ86JqlPA/hqdefault.jpg' + slackMetadata.timestamp
+            text: 'http://i.ytimg.com/vi/FWkJ86JqlPA/hqdefault.jpg?' + slackMetadata.timestamp
         });
     }
     callback();
