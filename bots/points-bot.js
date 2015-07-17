@@ -33,11 +33,11 @@ function applyPoint(thing, val, cb) {
   db.get('points', thing)
     .then(function (pointsObj) {
       if (pointsObj) {
-        cb(pointsObj.point);
-        //db.put('points', thing, {
-        //  point: pointsObj.point + val
-        //});
-        //cb(pointsObj.point + val);
+        console.log(pointsObj);
+        db.put('points', thing, {
+          point: pointsObj.point + val
+        });
+        cb(pointsObj.point + val);
       } else {
         db.put('points', thing, {
           point: val
