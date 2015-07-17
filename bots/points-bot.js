@@ -59,10 +59,10 @@ function applyPoint(thing, val, cb) {
 }
 
 function findThing(message, token) {
-  var tokenEndIndex = message.indexOf(token) + token.length;
-  var endIndex = message.indexOf(' ', tokenEndIndex);
-  if (endIndex === -1) {
-    endIndex = message.length;
+  var tokenIndex = message.indexOf(token);
+  var startIndex = message.lastIndexOf(' ', tokenIndex);
+  if (startIndex !== -1) {
+    startIndex++;
   }
-  return message.substring(tokenEndIndex, endIndex);
+  return message.substring(startIndex, tokenIndex);
 }
