@@ -29,14 +29,20 @@ module.exports = function (message, slackMetadata, callback) {
 };
 
 function applyPoint(thing, val, cb) {
-  db.newPatchBuilder('points', thing)
-    .inc("point", val)
-    .apply()
-    .then(function (result) {
-      cb(result);
+  //this code is really gross but it gets the job done
+  db.get('points', thing)
+    .then(function (pointsObj) {
+      db.put('points', thing, {
+        point: pointsObj.point + val
+      });
+      cb(pointsObj.point + val);
     })
     .fail(function (err) {
-    })
+      db.put('points', thing, {
+        point: val
+      });
+      cb(val);
+    });
 }
 
 function findThing(message, token) {
