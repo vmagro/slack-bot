@@ -47,6 +47,7 @@ module.exports = {
             }
         }, function (message) { // I am abusing the fact that async will return an "error" here at the first execution where a bot returns a value. We are using the parameter normally for errors as the message to be returned.
             console.log('bot returned');
+            console.log(message);
             return res.json(message);
         });
     },
