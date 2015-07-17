@@ -31,7 +31,8 @@ module.exports = function (message, slackMetadata, callback) {
 function applyPoint(thing, val, cb) {
   //this code is really gross but it gets the job done
   db.get('points', thing)
-    .then(function (pointsObj) {
+    .then(function (res) {
+      var pointsObj = res.body;
       if (pointsObj) {
         console.log(pointsObj);
         db.put('points', thing, {
