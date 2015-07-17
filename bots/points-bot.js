@@ -7,15 +7,21 @@ var db = require('orchestrate')(process.env.ORCHESTRATE_TOKEN);
 module.exports = function (message, slackMetadata, callback) {
   if (message.indexOf('++') !== -1) {
     var thing = findThing(message, '++');
-    applyPoint(thing, 1, function (val) {
-      var text = thing + ' has ' + val + ' point';
-      if (val !== 1) {
-        text += 's';
-      }
+    if (thing == slackMetadata.user_name) {
       callback({
-        text: text
+        text: "voting for yourself, really?"
       });
-    });
+    } else {
+      applyPoint(thing, 1, function (val) {
+        var text = thing + ' has ' + val + ' point';
+        if (val !== 1) {
+          text += 's';
+        }
+        callback({
+          text: text
+        });
+      });
+    }
   }
   if (message.indexOf('--') !== -1) {
     var thing = findThing(message, '--');
