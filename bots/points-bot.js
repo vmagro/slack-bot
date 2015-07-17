@@ -5,9 +5,6 @@
 var db = require('orchestrate')(process.env.ORCHESTRATE_TOKEN);
 
 module.exports = function (message, slackMetadata, callback) {
-  callback({
-    text: findThing(message, '--')
-  });
   if (message.indexOf('++') !== -1) {
     var thing = findThing(message, '++');
     applyPoint(thing, 1, function (val) {
@@ -44,5 +41,9 @@ function applyPoint(thing, val, cb) {
 
 function findThing(message, token) {
   var tokenEndIndex = message.indexOf(token) + token.length;
-  return message.substring(tokenEndIndex, message.indexOf(' ', tokenEndIndex));
+  var endIndex = message.indexOf(' ', tokenEndIndex);
+  if (endIndex === -1) {
+    endIndex = message.length;
+  }
+  return message.substring(tokenEndIndex, endIndex);
 }
