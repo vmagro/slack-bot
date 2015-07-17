@@ -42,7 +42,7 @@ function applyPoint(thing, val, cb) {
     })
 }
 
-function findThing(string, token) {
+function findThing(message, token) {
   var tokenEndIndex = message.indexOf(token) + token.length;
   return message.substring(tokenEndIndex, message.indexOf(' ', tokenEndIndex));
 }
