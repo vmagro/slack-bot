@@ -8,8 +8,12 @@ module.exports = function (message, slackMetadata, callback) {
   if (message.indexOf('++') !== -1) {
     var thing = findThing(message, '++');
     applyPoint(thing, 1, function (val) {
+      var text = thing + ' has ' + val + ' point';
+      if (val !== 1) {
+        text += 's';
+      }
       callback({
-        text: thing + ' has ' + val + ' points'
+        text: text
       });
     });
   }
