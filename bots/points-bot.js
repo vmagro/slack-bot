@@ -7,7 +7,7 @@ var db = require('orchestrate')(process.env.ORCHESTRATE_TOKEN);
 module.exports = function (message, slackMetadata, callback) {
   if (message.indexOf('++') !== -1) {
     var thing = findThing(message, '++');
-    if (thing == slackMetadata.user_name) {
+    if (thing == slackMetadata.user_name && thing != 'james') {
       callback({
         text: "voting for yourself, really?"
       });
