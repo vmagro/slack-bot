@@ -72,5 +72,6 @@ if (process.env.ORCHESTRATE_TOKEN) {
 } else {
 	module.exports = function (message, slackMetadata, callback) {
 		console.log('skipping points bot in dev');
+		callback();
 	}
 }
