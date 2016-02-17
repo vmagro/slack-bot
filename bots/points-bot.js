@@ -5,6 +5,7 @@ if (process.env.ORCHESTRATE_TOKEN) {
 
 	module.exports = function (message, slackMetadata, callback) {
 		if (message.indexOf('leaderboard') === 0) {
+			console.log('generating leaderboard');
 			db.list('points')
 			.then(function (result) {
 				var items = result.body.results;
@@ -47,7 +48,7 @@ if (process.env.ORCHESTRATE_TOKEN) {
 			});
 		}
 
-		if (message.indexOf('++') === -1 && message.indexOf('--') === -1) {
+		if (message.indexOf('++') === -1 && message.indexOf('--') === -1 && message.indexOf('leaderboard') !== 0) {
 			callback();
 		}
 
