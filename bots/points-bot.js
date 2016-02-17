@@ -4,13 +4,12 @@ if (process.env.ORCHESTRATE_TOKEN) {
 	var db = require('orchestrate')(process.env.ORCHESTRATE_TOKEN);
 
 	module.exports = function (message, slackMetadata, callback) {
-		if (message.indexOf('leaderboard') == 0) {
+		if (message.indexOf('leaderboard') === 0) {
 			db.list('points')
 			.then(function (result) {
 				var items = result.body.results;
-				var table = new AsciiTable('A Title')
-				table
-					.setHeading('', 'Name', 'Age');
+				var table = new AsciiTable('Leaderboard');
+				table.setHeading('', 'Name', 'Points');
 				for (var i=0; i<items.length; i++) {
 					var thing = items[i].path.key;
 					var points = items[i].value.point;
