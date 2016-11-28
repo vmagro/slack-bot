@@ -27,6 +27,8 @@ if (process.env.ORCHESTRATE_TOKEN) {
 				callback({
 					text: "voting for yourself, really?"
 				});
+			} else if (thing == 'c') {
+				return;
 			} else {
 				applyPoint(thing, 1, function (val) {
 					var text = thing + ' has ' + val + ' point';
